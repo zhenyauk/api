@@ -1,26 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
+Route::post('register', 'API\AuthController@register');
+Route::post('login', 'API\AuthController@login');
 
-/*
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'auth', 'middleware' => 'jwt.auth'], function () {
+    Route::get('user', 'API\AuthController@user');
+    Route::post('logout', 'API\AuthController@logout');
 });
-*/
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login');
 
-Route::group([
-
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function ($router) {
-
-
-
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-
-});
+Route::middleware('jwt.refresh')->get('/token/refresh', 'API\AuthController@refresh');
