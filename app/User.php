@@ -14,7 +14,7 @@ class User extends Authenticatable implements JWTSubject
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array˜
      */
     protected $fillable = [
         'name', 'email', 'password',
@@ -43,4 +43,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function marketplace()
+    {
+        return $this->hasOne(Marketplace::class);
+    }
+
+
 }
