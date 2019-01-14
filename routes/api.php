@@ -13,6 +13,9 @@ Route::group(['prefix' => 'auth', 'middleware' => 'jwt.auth'], function () {
 
     //wallet
     Route::get('wallet', 'API\WalletController@wallet');
+    Route::post('wallet/edit', 'API\WalletController@edit_wallet');
+    Route::post('wallet/plus', 'API\WalletController@plus');
+    Route::post('wallet/minus', 'API\WalletController@minus');
 
 
 

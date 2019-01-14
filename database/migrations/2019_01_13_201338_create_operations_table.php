@@ -18,10 +18,12 @@ class CreateOperationsTable extends Migration
             $table->integer('wallet_id');
             $table->integer('currency')->nullable();
             $table->string('operation')->nullable(); //plus minus
-            $table->string('amount')->nullable(); //100
-            $table->string('amount_cents')->nullable(); //100
+            $table->integer('amount')->nullable(); //100
+            $table->integer('amount_cents')->default(00); //100
             $table->string('hash')->nullable();
             $table->text('info')->nullable();
+            $table->text('log')->nullable();
+            $table->string('hash')->nullable();
             $table->timestamps();
         });
     }
