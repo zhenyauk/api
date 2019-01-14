@@ -8,6 +8,9 @@ Route::post('login', 'API\AuthController@login');
 Route::group(['prefix' => 'auth', 'middleware' => 'jwt.auth'], function () {
     //user
     Route::get('user', 'API\UserController@user');
+    Route::post('user/password', 'API\UserController@changePassword');
+    Route::post('user/change', 'API\UserController@changeUser');
+
     Route::post('logout', 'API\AuthController@logout');
 
 
