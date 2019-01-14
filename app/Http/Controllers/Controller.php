@@ -13,17 +13,14 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
+    //return User $user->id
     protected function getUid()
     {
-        $token = JWTAuth::getToken();
-        if(!$token){
-            return response()->json('invalid token');
-        }
-        $user = JWTAuth::toUser($token);
+        $user = $this->getUser();
         return $user->id;
     }
 
+    //return User $user
     protected function getUser()
     {
         $token = JWTAuth::getToken();
@@ -34,6 +31,7 @@ class Controller extends BaseController
         return $user;
     }
 
+    //Make your get\post more secure
     protected function secure($name)
     {
         $name = strip_tags($name);
